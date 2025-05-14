@@ -1,0 +1,14 @@
+# Node
+node_modules
+.pnpm
+dist
+.next
+.env
+*.log
+
+# System
+.DS_Store
+
+# Editor
+.vscode
+.idea
