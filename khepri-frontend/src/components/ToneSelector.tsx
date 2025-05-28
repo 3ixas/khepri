@@ -1,4 +1,4 @@
-import type { Tone } from "../src/types";
+import type { Tone } from "../types";
 
 interface ToneSelectorProps {
   selectedTone: Tone | null;
