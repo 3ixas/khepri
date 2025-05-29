@@ -1,4 +1,5 @@
 import { useState } from "react";
+import FitnessGoalsStep from './steps/FitnessGoalsStep';
 
 const steps = [
   "Fitness Goals",
@@ -22,8 +23,10 @@ export default function MultiStepForm() {
 
         {/* Render the step content */}
         <div className="min-h-[200px] bg-zinc-900 p-6 rounded-lg border border-zinc-700">
-          <p className="text-center text-zinc-400">Form content for: <strong>{steps[step]}</strong></p>
+            {step === 0 && <FitnessGoalsStep />}
+            {/* placeholder for other steps */}
         </div>
+
 
         {/* Navigation */}
         <div className="mt-8 flex justify-between">
