@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FitnessGoalsStep from './steps/FitnessGoalsStep';
 import EquipmentStep from './steps/EquipmentStep';
+import TimeAvailabilityStep from './steps/TimeAvailabilityStep';
 
 const steps = [
   "Fitness Goals",
@@ -26,6 +27,7 @@ export default function MultiStepForm() {
         <div className="min-h-[200px] bg-zinc-900 p-6 rounded-lg border border-zinc-700">
             {step === 0 && <FitnessGoalsStep />}
             {step === 1 && <EquipmentStep />}
+            {step === 2 && <TimeAvailabilityStep />}
             {/* placeholder for other steps */}
         </div>
 
