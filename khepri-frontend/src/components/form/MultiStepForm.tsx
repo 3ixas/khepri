@@ -2,14 +2,16 @@ import { useState } from "react";
 import FitnessGoalsStep from './steps/FitnessGoalsStep';
 import EquipmentStep from './steps/EquipmentStep';
 import TimeAvailabilityStep from './steps/TimeAvailabilityStep';
+import PrimaryGoalStep from './steps/PrimaryGoalStep';
 
 const steps = [
   "Fitness Goals",
-  "Equipment",
-  "Session Time",
+  "Available Equipment",
+  "Time Available Weekly",
+  "Primary Focus",
   "Fitness Level",
   "Schedule",
-  "Current Level vs Goal"
+  "Current vs Target"
 ];
 
 export default function MultiStepForm() {
@@ -28,6 +30,7 @@ export default function MultiStepForm() {
             {step === 0 && <FitnessGoalsStep />}
             {step === 1 && <EquipmentStep />}
             {step === 2 && <TimeAvailabilityStep />}
+            {step === 3 && <PrimaryGoalStep />}
             {/* placeholder for other steps */}
         </div>
 
