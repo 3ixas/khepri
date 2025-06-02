@@ -5,6 +5,7 @@ import TimeAvailabilityStep from './steps/TimeAvailabilityStep';
 import PrimaryGoalStep from './steps/PrimaryGoalStep';
 import FitnessLevelStep from './steps/FitnessLevelStep';
 import ScheduleStep from './steps/ScheduleStep';
+import CurrentVsTargetStep from './steps/CurrentVsTargetStep';
 
 const steps = [
   "Fitness Goals",
@@ -35,6 +36,7 @@ export default function MultiStepForm() {
             {step === 3 && <PrimaryGoalStep />}
             {step === 4 && <FitnessLevelStep />}
             {step === 5 && <ScheduleStep />}
+            {step === 6 && <CurrentVsTargetStep />}
         </div>
 
 
