@@ -18,6 +18,16 @@ const steps = [
 export default function MultiStepForm() {
   const [step, setStep] = useState(0);
 
+  // 🔧 Unified form state
+  const [formData, setFormData] = useState({
+    goals: [] as string[],
+    equipment: [] as string[],
+    timePerSession: null as number | null,
+    primaryGoal: null as string | null,
+    fitnessLevel: null as string | null,
+    schedule: [] as string[],
+  });
+
   const goNext = () => setStep((prev) => Math.min(prev + 1, steps.length - 1));
   const goBack = () => setStep((prev) => Math.max(prev - 1, 0));
 
@@ -26,16 +36,57 @@ export default function MultiStepForm() {
       <div className="max-w-3xl mx-auto">
         <h2 className="text-2xl font-bold mb-6 text-center">{steps[step]}</h2>
 
-        {/* Render the step content */}
+        {/* Step Content */}
         <div className="min-h-[200px] bg-zinc-900 p-6 rounded-lg border border-zinc-700">
-            {step === 0 && <FitnessGoalsStep />}
-            {step === 1 && <EquipmentStep />}
-            {step === 2 && <TimeAvailabilityStep />}
-            {step === 3 && <PrimaryGoalStep />}
-            {step === 4 && <FitnessLevelStep />}
-            {step === 5 && <ScheduleStep />}
+          {step === 0 && (
+            <FitnessGoalsStep
+              selectedGoals={formData.goals}
+              setSelectedGoals={(goals) =>
+                setFormData((prev) => ({ ...prev, goals }))
+              }
+            />
+          )}
+          {step === 1 && (
+            <EquipmentStep
+              selectedEquipment={formData.equipment}
+              setSelectedEquipment={(equipment) =>
+                setFormData((prev) => ({ ...prev, equipment }))
+              }
+            />
+          )}
+          {step === 2 && (
+            <TimeAvailabilityStep
+              timePerSession={formData.timePerSession}
+              setTimePerSession={(timePerSession) =>
+                setFormData((prev) => ({ ...prev, timePerSession }))
+              }
+            />
+          )}
+          {step === 3 && (
+            <PrimaryGoalStep
+              selectedGoal={formData.primaryGoal}
+              setSelectedGoal={(primaryGoal) =>
+                setFormData((prev) => ({ ...prev, primaryGoal }))
+              }
+            />
+          )}
+          {step === 4 && (
+            <FitnessLevelStep
+              selectedLevel={formData.fitnessLevel}
+              setSelectedLevel={(fitnessLevel) =>
+                setFormData((prev) => ({ ...prev, fitnessLevel }))
+              }
+            />
+          )}
+          {step === 5 && (
+            <ScheduleStep
+              selectedDays={formData.schedule}
+              setSelectedDays={(schedule) =>
+                setFormData((prev) => ({ ...prev, schedule }))
+              }
+            />
+          )}
         </div>
-
 
         {/* Navigation */}
         <div className="mt-8 flex justify-between">
