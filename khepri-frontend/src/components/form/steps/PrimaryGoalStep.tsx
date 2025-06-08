@@ -1,38 +1,37 @@
-import { useState } from "react";
+type Props = {
+  selectedGoal: string | null;
+  setSelectedGoal: (goal: string) => void;
+};
 
-const primaryGoalOptions = [
-  { id: "hypertrophy", label: "Hypertrophy", description: "Build muscle and size" },
-  { id: "calisthenics", label: "Calisthenics Strength", description: "Master bodyweight strength" },
-  { id: "distance", label: "Distance Running", description: "Improve endurance and aerobic fitness" },
-  { id: "sprinting", label: "Sprinting", description: "Explosive speed and power" },
-  { id: "mobility", label: "Mobility", description: "Improve range of motion and flexibility" },
-  { id: "general", label: "General Fitness", description: "Balanced overall conditioning" },
+const options = [
+  { id: "hypertrophy", label: "Build Muscle" },
+  { id: "calisthenics", label: "Master Calisthenics" },
+  { id: "distance", label: "Improve Endurance" },
+  { id: "sprinting", label: "Improve Speed" },
+  { id: "mobility", label: "Move Better" },
+  { id: "general", label: "General Fitness" },
 ];
 
-export default function PrimaryGoalStep() {
-  const [selected, setSelected] = useState<string | null>(null);
-
+export default function PrimaryGoalStep({ selectedGoal, setSelectedGoal }: Props) {
   return (
-    <div className="space-y-4">
-      <p className="text-sm text-zinc-400 mb-4 text-center">
-        Pick one <span className="text-white font-medium">primary focus</span> (optional)
+    <div>
+      <p className="text-zinc-400 mb-4 text-center">
+        Select a primary focus (optional). Leaving this blank will create a balanced plan across your chosen goals.
       </p>
-
       <div className="grid sm:grid-cols-2 gap-4">
-        {primaryGoalOptions.map((goal) => {
-          const isActive = selected === goal.id;
+        {options.map((option) => {
+          const isActive = selectedGoal === option.id;
           return (
             <button
-              key={goal.id}
-              onClick={() => setSelected(goal.id === selected ? null : goal.id)}
+              key={option.id}
+              onClick={() => setSelectedGoal(option.id)}
               className={`w-full py-4 px-6 rounded-xl text-left border-2 transition ${
                 isActive
                   ? "bg-blue-600 border-blue-400 text-white"
                   : "bg-zinc-800 border-zinc-700 hover:border-zinc-500"
               }`}
             >
-              <div className="text-lg font-semibold">{goal.label}</div>
-              <p className="text-sm text-zinc-400">{goal.description}</p>
+              {option.label}
             </button>
           );
         })}
