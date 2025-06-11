@@ -1,4 +1,7 @@
-import { useState } from "react";
+type Props = {
+  selectedDays: string[];
+  setSelectedDays: (days: string[]) => void;
+};
 
 const days = [
   { id: "mon", label: "Mon" },
@@ -10,13 +13,13 @@ const days = [
   { id: "sun", label: "Sun" },
 ];
 
-export default function ScheduleStep() {
-  const [selected, setSelected] = useState<string[]>([]);
-
+export default function ScheduleStep({ selectedDays, setSelectedDays }: Props) {
   const toggleDay = (dayId: string) => {
-    setSelected((prev) =>
-      prev.includes(dayId) ? prev.filter((d) => d !== dayId) : [...prev, dayId]
-    );
+    if (selectedDays.includes(dayId)) {
+      setSelectedDays(selectedDays.filter((d) => d !== dayId));
+    } else {
+      setSelectedDays([...selectedDays, dayId]);
+    }
   };
 
   return (
@@ -26,7 +29,7 @@ export default function ScheduleStep() {
       </p>
       <div className="grid grid-cols-4 sm:grid-cols-7 gap-3 max-w-md mx-auto">
         {days.map((day) => {
-          const isActive = selected.includes(day.id);
+          const isActive = selectedDays.includes(day.id);
           return (
             <button
               key={day.id}
