@@ -5,6 +5,7 @@ import TimeAvailabilityStep from './steps/TimeAvailabilityStep';
 import PrimaryGoalStep from './steps/PrimaryGoalStep';
 import FitnessLevelStep from './steps/FitnessLevelStep';
 import ScheduleStep from './steps/ScheduleStep';
+import ReviewStep from './steps/ReviewStep';
 
 const steps = [
   "Fitness Goals",
@@ -13,12 +14,12 @@ const steps = [
   "Primary Focus",
   "Fitness Level",
   "Schedule",
+  "Review & Submit",
 ];
 
 export default function MultiStepForm() {
   const [step, setStep] = useState(0);
 
-  // 🔧 Unified form state
   const [formData, setFormData] = useState({
     goals: [] as string[],
     equipment: [] as string[],
@@ -84,6 +85,14 @@ export default function MultiStepForm() {
               setSelectedDays={(schedule) =>
                 setFormData((prev) => ({ ...prev, schedule }))
               }
+            />
+          )}
+          {step === 6 && (
+            <ReviewStep
+              formData={formData}
+              onSubmit={() => {
+                console.log("Final form data submitted:", formData); // Replace with API call in next phase
+              }}
             />
           )}
         </div>
