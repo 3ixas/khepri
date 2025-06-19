@@ -8,9 +8,10 @@ type ReviewStepProps = {
       schedule: string[];
     };
     onSubmit: () => void;
+    loading: boolean;
   };
   
-  export default function ReviewStep({ formData, onSubmit }: ReviewStepProps) {
+  export default function ReviewStep({ formData, onSubmit, loading }: ReviewStepProps) {
     const formatList = (items: string[]) =>
       items.length > 0 ? items.join(", ") : "None selected";
   
@@ -46,12 +47,15 @@ type ReviewStepProps = {
         </div>
   
         <div className="text-center">
-          <button
-            onClick={onSubmit}
-            className="mt-6 px-6 py-2 bg-green-600 hover:bg-green-700 transition rounded-lg text-white font-semibold"
-          >
-            Submit Plan
-          </button>
+            <button
+                onClick={onSubmit}
+                disabled={loading}
+                className={`mt-6 px-6 py-2 rounded-lg font-semibold text-white transition ${
+                    loading ? "bg-gray-500 cursor-not-allowed" : "bg-green-600 hover:bg-green-700"
+                }`}
+            >
+                {loading ? "Submitting..." : "Submit Plan"}
+            </button>
         </div>
       </div>
     );
